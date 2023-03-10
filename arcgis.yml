@@ -1,0 +1,34 @@
+name: 210_prerel
+channels:
+- conda-forge
+- defaults
+- anaconda
+- esri
+- esri/label/prerelease
+dependencies:
+- python=3.9
+- pip
+- geopandas
+- pygeos
+- pysal
+- contextily
+- jupyterlab_widgets
+- arcgis=2.1.0
+- geos
+- cartopy
+- pip:
+  - pillow==9.1
+  - fiona
+  - pyproject==3.3
+  - openpyxl
+  - cenpy
+  - python-Levenshtein
+  - geopy
+  - graphviz
+  - ipyleaflet
+  - ipywidgets
+  - jupyterlab==2.3.1
+  - pandas==1.5.1
+  - shapely==1.8.5
+  - pyshp==2.1.3
+  - censusdata

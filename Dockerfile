@@ -46,3 +46,6 @@ RUN jupyter nbextension enable  --py --sys-prefix arcgis && \
 USER $NB_UID
 
 COPY arcgis_test.ipynb /opt
+
+ENV USE_PYGEOS=0
+

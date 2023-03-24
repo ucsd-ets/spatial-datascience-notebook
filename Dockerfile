@@ -28,6 +28,7 @@ RUN pip uninstall pillow fiona -y && \
 				geopy \
 				ipyleaflet \
 				ipywidgets \
+				keplergl \
 				jupyterlab==2.3.1 \
 				shapely==2.0.0 \
 				pyshp==2.3.1 \

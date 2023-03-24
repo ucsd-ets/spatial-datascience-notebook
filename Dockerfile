@@ -29,6 +29,9 @@ RUN pip uninstall pillow fiona -y && \
 				ipyleaflet \
 				ipywidgets \
 				keplergl \
+				mesa-geo \
+				mesa \
+				matplotlib \
 				jupyterlab==2.3.1 \
 				shapely==2.0.0 \
 				pyshp==2.3.1 \

@@ -20,25 +20,10 @@ RUN pip install --upgrade nbconvert
 RUN mamba install -c conda-forge geopandas cartopy pygeos pysal contextily osmnx jupyterlab_widgets -y
 
 RUN pip uninstall pillow fiona -y && \
-	pip install pillow==9.1 \
-				pyproj==3.3 \
-				openpyxl \
-				cenpy \
-				python-Levenshtein \
-				geopy \
-				keplergl \
-				mesa-geo \
-				mesa \
-				matplotlib \
-				ipyleaflet \
-				ipywidgets \
-				jupyterlab==2.3.1 \
-				shapely==2.0.0 \
-				pyshp==2.3.1 \
-				pandas==1.5.2 \
-				censusdata \
-				graphviz && \
+	pip install -r requirements.txt && \
 	pip install --upgrade fiona
+
+RUN pip install -r requirements.txt
 
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
 	jupyter labextension install @jupyter-widgets/jupyterlab-manager && \

@@ -20,7 +20,7 @@ RUN pip install --upgrade nbconvert
 RUN mamba install -c conda-forge geopandas cartopy pygeos pysal contextily osmnx jupyterlab_widgets -y
 
 RUN pip uninstall pillow fiona -y && \
-	pip install -r requirements.txt && \
+  pip install -r requirements.txt && \
 	pip install --upgrade fiona
 
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \

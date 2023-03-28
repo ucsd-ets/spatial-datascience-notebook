@@ -23,8 +23,6 @@ RUN pip uninstall pillow fiona -y && \
 	pip install -r requirements.txt && \
 	pip install --upgrade fiona
 
-RUN pip install -r requirements.txt
-
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
 	jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
 	jupyter labextension install arcgis-map-ipywidget@2.0.1

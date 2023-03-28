@@ -26,6 +26,10 @@ RUN pip uninstall pillow fiona -y && \
 				cenpy \
 				python-Levenshtein \
 				geopy \
+				keplergl \
+				mesa-geo \
+				mesa \
+				matplotlib \
 				ipyleaflet \
 				ipywidgets \
 				jupyterlab==2.3.1 \

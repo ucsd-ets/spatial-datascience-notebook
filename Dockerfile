@@ -5,7 +5,7 @@ LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
 
 USER root
 
-###########################
+######################### ##
 # Requested for DSC170 WI23
 COPY requirements.txt /home/jovyan
 

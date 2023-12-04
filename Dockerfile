@@ -14,7 +14,7 @@ RUN apt update -y && \
     add-apt-repository universe && \
     apt update -y && \
     apt install graphviz -y
-RUN mamba install -c esri arcgis=2.1.0.2 numpy=1.22.0 -y
+RUN mamba install -c esri arcgis=2.2.0 numpy=1.26.2 -y
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert

@@ -22,12 +22,12 @@ RUN pip install --upgrade nbconvert
 RUN mamba install -c conda-forge geopandas cartopy pygeos pysal contextily osmnx jupyterlab_widgets -y
 
 RUN pip uninstall pillow fiona -y && \
-  pip install -r ~/requirements.txt && \
+    pip install -r ~/requirements.txt && \
 	pip install --upgrade fiona
 
-RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
-	jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
-	jupyter labextension install arcgis-map-ipywidget@2.0.1
+RUN pip uninstall pillow fiona -y || echo "Failed to uninstall pillow or fiona" && \
+    pip install -r ~/requirements.txt || echo "Failed to install requirements" && \
+    pip install --upgrade fiona || echo "Failed to upgrade fiona"
 
 RUN jupyter nbextension enable  --py --sys-prefix arcgis && \
 	jupyter nbextension enable --py --sys-prefix arcgis

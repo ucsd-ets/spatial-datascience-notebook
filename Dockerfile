@@ -16,7 +16,7 @@ RUN apt update -y && \
     apt install graphviz -y
 RUN mamba install -c esri arcgis=2.2.0 -y
 
-RUN pip install numpy>=1.16.5,<1.23.0 || echo "Failed to install numpy"
+RUN mamba install -c numpy=1.22.4 -y || echo "Failed to install numpy"
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert

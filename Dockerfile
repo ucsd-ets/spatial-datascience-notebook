@@ -21,10 +21,6 @@ RUN pip install --upgrade nbconvert
 
 RUN mamba install -c conda-forge geopandas cartopy pygeos pysal contextily osmnx jupyterlab_widgets -y
 
-RUN pip uninstall pillow fiona -y && \
-    pip install -r ~/requirements.txt && \
-	pip install --upgrade fiona
-
 RUN pip uninstall pillow fiona -y || echo "Failed to uninstall pillow or fiona" && \
     pip install -r ~/requirements.txt || echo "Failed to install requirements" && \
     pip install --upgrade fiona || echo "Failed to upgrade fiona"

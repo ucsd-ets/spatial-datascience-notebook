@@ -1,4 +1,4 @@
-ARG BASE_CONTAINER=ucsdets/datahub-base-notebook:2023.2-stable
+ARG BASE_CONTAINER=ghcr.io/ucsd-ets/rstudio-notebook:2024.4-stable
 FROM $BASE_CONTAINER
 
 LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
@@ -8,6 +8,9 @@ USER root
 ######################### ##
 # Requested for DSC170 WI23
 COPY requirements.txt /home/jovyan
+
+RUN pip install jupyterlab
+ENV dsmlp/datahub=lab
 
 RUN apt update -y && \
     apt-get install software-properties-common -y && \
@@ -20,6 +23,7 @@ RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
 
 RUN mamba install -c conda-forge geopandas cartopy pygeos pysal contextily osmnx jupyterlab_widgets -y
+
 
 RUN pip uninstall pillow fiona -y && \
   pip install -r ~/requirements.txt && \

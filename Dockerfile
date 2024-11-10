@@ -10,7 +10,7 @@ USER root
 COPY requirements.txt /home/jovyan
 
 RUN pip install jupyterlab
-ENV dsmlp/datahub=lab
+
 
 RUN apt update -y && \
     apt-get install software-properties-common -y && \
@@ -41,5 +41,6 @@ USER $NB_UID
 COPY arcgis_test.ipynb /opt
 RUN rm -rf /home/jovyan/requirements.txt
 
-ENV USE_PYGEOS=0
+#ENV USE_PYGEOS=0
+ENV dsmlp/datahub=lab
 

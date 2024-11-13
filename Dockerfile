@@ -14,6 +14,18 @@ RUN apt update -y && \
     add-apt-repository universe && \
     apt update -y && \
     apt install graphviz -y
+
+# Install geospatial packages first
+RUN mamba install -c conda-forge -y \
+    python=3.10 \
+    geopandas=0.13.2 \
+    cartopy=0.21.1 \
+    pygeos=0.14 \
+    pysal=2.7.0 \
+    contextily=1.3.0 \
+    osmnx=1.3.0 \
+    jupyterlab_widgets=3.0.7
+
 RUN mamba install -c esri arcgis=2.2.0 -y && \
     mamba update arcgis -y
 
@@ -23,7 +35,7 @@ RUN mamba install numpy -y && \
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
 
-RUN mamba install -c conda-forge geopandas cartopy pygeos pysal contextily osmnx jupyterlab_widgets -y
+# RUN mamba install -c conda-forge geopandas cartopy pygeos pysal contextily osmnx jupyterlab_widgets -y
 
 RUN pip uninstall pillow fiona -y && \
     pip install -r ~/requirements.txt && \

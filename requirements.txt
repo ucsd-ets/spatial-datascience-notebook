@@ -1,5 +1,5 @@
-pillow==9.1
-pyproj==3.3 
+pillow
+pyproj
 openpyxl 
 cenpy 
 python-Levenshtein 
@@ -10,9 +10,9 @@ keplergl
 mesa-geo 
 mesa 
 matplotlib 
-jupyterlab==2.3.1 
-shapely==2.0.0 
-pyshp==2.3.1 
-pandas==1.5.2 
+jupyterlab
+shapely
+pyshp
+pandas
 censusdata 
 graphviz

@@ -27,13 +27,10 @@ RUN pip uninstall pillow fiona -y && \
 # ImportError: /opt/conda/lib/python3.11/lib-dynload/_sqlite3.cpython-311-x86_64-linux-gnu.so: undefined symbol: sqlite3_deserialize 
 # Moved to requirements.txt
 
-RUN mamba install -c conda-forge -y \
-    jupyterlab_widgets && \
+RUN mamba install -c esri arcgis arcgis-mapping -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER && \
     mamba clean --all
-
-RUN mamba install -c esri arcgis arcgis-mapping -y
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert

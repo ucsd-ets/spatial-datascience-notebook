@@ -21,3 +21,4 @@ cartopy
 pysal
 contextily
 osmnx
+jupyterlab_widgets

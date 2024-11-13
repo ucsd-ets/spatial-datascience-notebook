@@ -14,9 +14,11 @@ RUN apt update -y && \
     add-apt-repository universe && \
     apt update -y && \
     apt install graphviz -y
-RUN mamba install -c esri arcgis=2.2.0 -y
+RUN mamba install -c esri arcgis=2.2.0 -y && \
+    mamba update arcgis -y
 
-RUN mamba install numpy -y
+RUN mamba install numpy -y && \
+    mamba update numpy -y
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
@@ -30,7 +32,7 @@ RUN pip uninstall pillow fiona -y && \
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
 	jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
 	jupyter labextension install arcgis-map-ipywidget@2.0.1
-    
+
 USER $NB_UID
 
 COPY arcgis_test.ipynb /opt

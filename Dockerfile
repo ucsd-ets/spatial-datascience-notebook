@@ -33,7 +33,7 @@ RUN mamba install -c conda-forge -y \
     fix-permissions /home/$NB_USER && \
     mamba clean --all
 
-RUN mamba install -c esri arcgis -y
+RUN mamba install -c esri arcgis arcgis-mapping -y
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert

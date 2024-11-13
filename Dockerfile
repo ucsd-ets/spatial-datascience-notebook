@@ -22,23 +22,21 @@ RUN pip uninstall pillow fiona -y && \
     
 # pygeos is deprecated and has been merged with shapely. (pygeos works around python GIL)
 # https://github.com/shapely/shapely
+
+# geopandas/cartopy/etc. error when importing sqlite3 from python:
+# ImportError: /opt/conda/lib/python3.11/lib-dynload/_sqlite3.cpython-311-x86_64-linux-gnu.so: undefined symbol: sqlite3_deserialize 
+# Moved to requirements.txt
+
 RUN mamba install -c conda-forge -y \
-    geopandas \
-    cartopy \
-    shapely \
-    pysal \
-    contextily \
-    osmnx \
-    jupyterlab_widgets
+    jupyterlab_widgets && \
+    fix-permissions $CONDA_DIR && \
+    fix-permissions /home/$NB_USER && \
+    mamba clean --all
 
 RUN mamba install -c esri arcgis -y
 
-RUN mamba install numpy -y
-
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
-
-# RUN mamba install -c conda-forge geopandas cartopy pygeos pysal contextily osmnx jupyterlab_widgets -y
 
 USER $NB_UID
 

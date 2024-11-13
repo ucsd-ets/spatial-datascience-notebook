@@ -16,3 +16,8 @@ pyshp
 pandas
 censusdata 
 graphviz
+geopandas
+cartopy
+pysal
+contextily
+osmnx

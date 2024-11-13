@@ -1,4 +1,4 @@
-ARG BASE_CONTAINER=ucsdets/datahub-base-notebook:stable
+ARG BASE_CONTAINER=ghcr.io/ucsd-ets/datascience-notebook:2024.4-stable
 FROM $BASE_CONTAINER
 
 LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
@@ -16,19 +16,16 @@ RUN apt update -y && \
     apt install graphviz -y
 RUN mamba install -c esri arcgis=2.2.0 -y
 
-RUN mamba install numpy=1.22.4 -y || echo "Failed to install numpy"
+RUN mamba install numpy -y
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
 
 RUN mamba install -c conda-forge geopandas cartopy pygeos pysal contextily osmnx jupyterlab_widgets -y
 
-RUN pip uninstall pillow fiona -y || echo "Failed to uninstall pillow or fiona" && \
-    pip install -r ~/requirements.txt || echo "Failed to install requirements" && \
-    pip install --upgrade fiona || echo "Failed to upgrade fiona"
-
-RUN jupyter nbextension enable  --py --sys-prefix arcgis && \
-	jupyter nbextension enable --py --sys-prefix arcgis
+RUN pip uninstall pillow fiona -y && \
+    pip install -r ~/requirements.txt && \
+    pip install --upgrade fiona
 
 USER $NB_UID
 

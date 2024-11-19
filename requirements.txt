@@ -10,7 +10,6 @@ keplergl
 mesa-geo 
 mesa 
 matplotlib 
-jupyterlab
 shapely
 pyshp
 pandas
@@ -20,5 +19,5 @@ geopandas
 cartopy
 pysal
 contextily
-osmnx
 jupyterlab_widgets
+osmnx

@@ -21,3 +21,12 @@ pysal
 contextily
 jupyterlab_widgets
 osmnx
+
+# New packages
+panel
+statsmodels
+pyvis
+networkx
+holoviews
+hvplot
+geopandas

@@ -30,5 +30,3 @@ networkx
 holoviews
 hvplot
 geopandas
-arcgis
-arcgis-mapping

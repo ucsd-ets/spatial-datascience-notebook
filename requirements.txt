@@ -32,3 +32,4 @@ hvplot
 geopandas
 bokeh
 jupyter_bokeh
+jupyterlab-open-url-parameter

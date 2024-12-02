@@ -31,4 +31,4 @@ holoviews
 hvplot
 geopandas
 bokeh
-jupyter_lab
+jupyter_bokeh

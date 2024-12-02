@@ -30,3 +30,5 @@ networkx
 holoviews
 hvplot
 geopandas
+bokeh
+jupyter_lab

@@ -22,8 +22,6 @@ jupyterlab_widgets
 osmnx
 
 # New packages
-# If you install ipywidgets via pip, ensure it MATCHES the conda-installed version - otherwise an error will be thrown when using HTML()
-# ipywidgets==7.8.5
 panel
 statsmodels
 pyvis

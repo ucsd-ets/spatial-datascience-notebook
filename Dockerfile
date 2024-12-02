@@ -37,11 +37,6 @@ RUN pip install --upgrade nbconvert
 
 # RUN pip install "numpy<2"
 
-# Ensure that pip's ipywidgets is == conda's.
-# Otherwise, HTML() will throw a mismatch error.
-# Check this with pip list/conda list | grep ipywidgets
-RUN pip install ipywidgets==$(conda list ipywidgets | awk '/ipywidgets/{print $2}')
-
 USER $NB_UID
 
 COPY arcgis_test.ipynb /opt

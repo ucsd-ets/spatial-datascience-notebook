@@ -5,7 +5,7 @@ cenpy
 python-Levenshtein 
 geopy 
 ipyleaflet
-keplergl 
+keplergl
 mesa-geo 
 mesa 
 matplotlib 
@@ -20,6 +20,9 @@ pysal
 contextily
 jupyterlab_widgets
 osmnx
+
+# TODO: keplergl/bokeh conflict with their dependency on ipywidgets as of 12/5/24. keplergl wants ipyiwdgets<8 >=7.8.1, but bokeh wants ==8.*.
+# May have to pick one or the other
 
 # New packages
 ipywidgets

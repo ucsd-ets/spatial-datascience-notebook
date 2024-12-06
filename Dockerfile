@@ -35,7 +35,8 @@ RUN mamba install -c esri arcgis arcgis-mapping -y && \
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
 
-RUN jupyter labextension install @wuxinextcode/jupyterlab-notebookparams
+RUN jupyter labextension install @dafeliton/jupyterlab-notebookparams --no-build
+
 
 # RUN pip install "numpy<2"
 

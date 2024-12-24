@@ -47,3 +47,4 @@ RUN rm -rf /home/jovyan/requirements.txt
 
 ENV USE_PYGEOS=0
 
+RUN pip install numpy==1.26.4

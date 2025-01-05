@@ -36,7 +36,7 @@ RUN mamba install -c esri arcgis arcgis-mapping -y && \
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
-RUN pip install numpy==1.26.4 pygris
+RUN pip install numpy==1.26.4 pygris shap
 
 # RUN pip install "numpy<2"
 

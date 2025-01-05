@@ -21,12 +21,12 @@ RUN jupyter labextension install @dafeliton/jupyterlab-notebookparams
 RUN pip uninstall pillow fiona -y && \
     pip install -r ~/requirements.txt && \
     pip install --upgrade fiona
-    
+
 # pygeos is deprecated and has been merged with shapely. (pygeos works around python GIL)
 # https://github.com/shapely/shapely
 
 # geopandas/cartopy/etc. error when importing sqlite3 from python:
-# ImportError: /opt/conda/lib/python3.11/lib-dynload/_sqlite3.cpython-311-x86_64-linux-gnu.so: undefined symbol: sqlite3_deserialize 
+# ImportError: /opt/conda/lib/python3.11/lib-dynload/_sqlite3.cpython-311-x86_64-linux-gnu.so: undefined symbol: sqlite3_deserialize
 # Moved to requirements.txt
 
 RUN mamba install -c esri arcgis arcgis-mapping -y && \
@@ -36,7 +36,7 @@ RUN mamba install -c esri arcgis arcgis-mapping -y && \
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
-
+RUN pip install numpy==1.26.4 pygris
 
 # RUN pip install "numpy<2"
 
@@ -46,5 +46,3 @@ COPY arcgis_test.ipynb /opt
 RUN rm -rf /home/jovyan/requirements.txt
 
 ENV USE_PYGEOS=0
-
-RUN pip install numpy==1.26.4

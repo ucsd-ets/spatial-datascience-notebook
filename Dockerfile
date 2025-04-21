@@ -16,7 +16,20 @@ RUN apt update -y && \
 
 RUN jupyter labextension install @dafeliton/jupyterlab-notebookparams
 
-ENV SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
+### BEGIN censusdis
+ARG KERNEL=censusdis
+COPY ${KERNEL}.yaml /home/jovyan
+RUN mamba create --yes -p "${CONDA_DIR}/envs/${KERNEL}" --file /home/jovyan/${KERNEL}.yaml && \
+    mamba clean --all -f -y
+
+RUN "${CONDA_DIR}/envs/${KERNEL}/bin/python" -m ipykernel install --user --name="${KERNEL}" && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
+
+RUN /opt/setup-scripts/activate_notebook_custom_env.py "${KERNEL}"
+### END censusdis
+
+ARG SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
 # Install geospatial packages first
 RUN pip uninstall pillow fiona -y && \
     pip install -r ~/requirements.txt && \
@@ -36,21 +49,8 @@ RUN mamba install -c esri arcgis arcgis-mapping -y && \
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
-# RUN pip install numpy==1.26.4 pygris shap
-
-ARG KERNEL=censusdis
-# ARG CONDA_PREFIX=/opt/conda/envs/${KERNEL}
-COPY ${KERNEL}.yaml /home/jovyan
-RUN conda env create --file /home/jovyan/${KERNEL}.yaml && \
-    # eval "$(conda shell.bash hook)" && \
-    # conda activate ${KERNEL} && \
-    # mkdir -p $CONDA_PREFIX/etc/conda/activate.d && \
-    python -m ipykernel install --name=${KERNEL}
-
-# RUN pip install "numpy<2"
 
 USER $NB_UID
-
 COPY arcgis_test.ipynb /opt
 RUN rm -rf /home/jovyan/requirements.txt
 

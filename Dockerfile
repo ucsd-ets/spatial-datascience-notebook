@@ -18,8 +18,12 @@ RUN jupyter labextension install @dafeliton/jupyterlab-notebookparams
 
 ### BEGIN censusdis
 ARG KERNEL=censusdis
-COPY ${KERNEL}.yaml /home/jovyan
-RUN mamba create --yes -p "${CONDA_DIR}/envs/${KERNEL}" --file /home/jovyan/${KERNEL}.yaml && \
+# COPY ${KERNEL}.yaml /home/jovyan
+RUN mamba create --yes -p "${CONDA_DIR}/envs/${KERNEL}" \
+    python=3.11 \
+    ipykernel \
+    jupyterlab \
+    censusdis && \
     mamba clean --all -f -y
 
 RUN "${CONDA_DIR}/envs/${KERNEL}/bin/python" -m ipykernel install --user --name="${KERNEL}" && \

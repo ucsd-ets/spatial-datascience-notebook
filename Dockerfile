@@ -1,6 +1,6 @@
 FROM ghcr.io/ucsd-ets/datascience-notebook:2024.4-stable
 
-LABEL maintainer="UC San Diego"
+LABEL maintainer="https://github.com/ucsd-ets/spatial-datascience-notebook"
 
 USER root
 

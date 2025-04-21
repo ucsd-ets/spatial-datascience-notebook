@@ -37,7 +37,7 @@ RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/pip" install --no-cache-dir \
     censusdis \
     'numpy==1.26.4'
 
-RUN /opt/setup-scripts/activate_notebook_custom_env.py "${ENVNAME}"
+#RUN /opt/setup-scripts/activate_notebook_custom_env.py "${ENVNAME}"
 ### END censusdis
 
 ARG SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True

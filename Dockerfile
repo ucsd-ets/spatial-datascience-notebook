@@ -25,7 +25,7 @@ RUN mamba create --yes -p "${CONDA_DIR}/envs/${ENVNAME}" \
     jupyterlab && \
     mamba clean --all -f -y
 
-RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --prefix /opt/conda/share/jupyter/kernels --name="${ENVNAME}" && \
+RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --prefix /opt/conda --name="${ENVNAME}" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 

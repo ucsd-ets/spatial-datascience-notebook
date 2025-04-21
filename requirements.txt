@@ -1,18 +1,18 @@
 pillow
 pyproj
-openpyxl 
-cenpy 
-python-Levenshtein 
-geopy 
+openpyxl
+cenpy
+python-Levenshtein
+geopy
 ipyleaflet
 keplergl
-mesa-geo 
-mesa 
-matplotlib 
+mesa-geo
+mesa
+matplotlib
 shapely
 pyshp
 pandas
-censusdata 
+censusdata
 graphviz
 geopandas
 cartopy
@@ -21,6 +21,8 @@ contextily
 jupyterlab_widgets
 osmnx
 numpy==1.26.4
+censusdis
+xgboost
 
 # TODO: keplergl/bokeh conflict with their dependency on ipywidgets as of 12/5/24. keplergl wants ipyiwdgets<8 >=7.8.1, but bokeh wants ==8.*.
 # May have to pick one or the other

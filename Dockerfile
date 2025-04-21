@@ -18,7 +18,6 @@ RUN jupyter labextension install @dafeliton/jupyterlab-notebookparams
 
 ### BEGIN censusdis
 ARG KERNEL=censusdis
-# COPY ${KERNEL}.yaml /home/jovyan
 RUN mamba create --yes -p "${CONDA_DIR}/envs/${KERNEL}" \
     python=3.11 \
     ipykernel \

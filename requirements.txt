@@ -41,5 +41,5 @@ pygris
 shap
 
 # spring 2025
-censusdis
-xgboost
+# censusdis
+# xgboost

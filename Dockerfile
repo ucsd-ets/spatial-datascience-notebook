@@ -1,7 +1,6 @@
-ARG BASE_CONTAINER=ghcr.io/ucsd-ets/datascience-notebook:2024.4-stable
-FROM $BASE_CONTAINER
+FROM ghcr.io/ucsd-ets/datascience-notebook:2024.4-stable
 
-LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
+LABEL maintainer="UC San Diego"
 
 USER root
 
@@ -38,6 +37,15 @@ RUN mamba install -c esri arcgis arcgis-mapping -y && \
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
 # RUN pip install numpy==1.26.4 pygris shap
+
+ARG KERNEL=censusdis
+# ARG CONDA_PREFIX=/opt/conda/envs/${KERNEL}
+COPY ${KERNEL}.yaml /home/jovyan
+RUN conda env create --file /home/jovyan/${KERNEL}.yaml && \
+    # eval "$(conda shell.bash hook)" && \
+    # conda activate ${KERNEL} && \
+    # mkdir -p $CONDA_PREFIX/etc/conda/activate.d && \
+    python -m ipykernel install --name=${KERNEL}
 
 # RUN pip install "numpy<2"
 

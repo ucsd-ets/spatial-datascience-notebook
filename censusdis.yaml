@@ -1,0 +1,6 @@
+name: censusdis
+channels:
+- conda-forge
+dependencies:
+- pip:
+  - censusdis

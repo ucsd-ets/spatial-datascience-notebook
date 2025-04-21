@@ -22,7 +22,7 @@ ARG PYVER=3.11
 RUN mamba create --yes -p "${CONDA_DIR}/envs/${ENVNAME}" \
     python=${PYVER} \
     ipykernel \
-    jupyterlab \
+    jupyterlab && \
     mamba clean --all -f -y
 
 RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --user --name="${ENVNAME}" && \

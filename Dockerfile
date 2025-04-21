@@ -17,21 +17,22 @@ RUN apt update -y && \
 RUN jupyter labextension install @dafeliton/jupyterlab-notebookparams
 
 ### BEGIN censusdis
-ARG KERNEL=censusdis
-RUN mamba create --yes -p "${CONDA_DIR}/envs/${KERNEL}" \
-    python=3.11 \
+ARG ENVNAME=censusdis
+ARG PYVER=3.11
+RUN mamba create --yes -p "${CONDA_DIR}/envs/${ENVNAME}" \
+    python=${PYVER} \
     ipykernel \
     jupyterlab \
     mamba clean --all -f -y
 
-RUN "${CONDA_DIR}/envs/${KERNEL}/bin/python" -m ipykernel install --user --name="${KERNEL}" && \
+RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --user --name="${ENVNAME}" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
 RUN "${CONDA_DIR}/envs/${env_name}/bin/pip" install --no-cache-dir \
     censusdis
 
-RUN /opt/setup-scripts/activate_notebook_custom_env.py "${KERNEL}"
+RUN /opt/setup-scripts/activate_notebook_custom_env.py "${ENVNAME}"
 ### END censusdis
 
 ARG SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True

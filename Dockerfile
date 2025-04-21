@@ -30,7 +30,8 @@ RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --user --name
     fix-permissions "/home/${NB_USER}"
 
 RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/pip" install --no-cache-dir \
-    censusdis
+    censusdis \
+    'numpy<2'
 
 RUN /opt/setup-scripts/activate_notebook_custom_env.py "${ENVNAME}"
 ### END censusdis

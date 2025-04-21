@@ -17,6 +17,7 @@ RUN apt update -y && \
 
 RUN jupyter labextension install @dafeliton/jupyterlab-notebookparams
 
+ENV SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
 # Install geospatial packages first
 RUN pip uninstall pillow fiona -y && \
     pip install -r ~/requirements.txt && \
@@ -36,7 +37,7 @@ RUN mamba install -c esri arcgis arcgis-mapping -y && \
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
-RUN pip install numpy==1.26.4 pygris shap
+# RUN pip install numpy==1.26.4 pygris shap
 
 # RUN pip install "numpy<2"
 

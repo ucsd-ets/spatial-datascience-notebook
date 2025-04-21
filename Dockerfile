@@ -60,6 +60,7 @@ RUN mamba install --yes 'py-xgboost' && \
     fix-permissions "/home/${NB_USER}"
 
 USER $NB_UID
+
 COPY arcgis_test.ipynb /opt
 RUN rm -rf /home/jovyan/requirements.txt
 

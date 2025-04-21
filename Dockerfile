@@ -23,12 +23,14 @@ RUN mamba create --yes -p "${CONDA_DIR}/envs/${KERNEL}" \
     python=3.11 \
     ipykernel \
     jupyterlab \
-    censusdis && \
     mamba clean --all -f -y
 
 RUN "${CONDA_DIR}/envs/${KERNEL}/bin/python" -m ipykernel install --user --name="${KERNEL}" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
+
+RUN "${CONDA_DIR}/envs/${env_name}/bin/pip" install --no-cache-dir \
+    censusdis
 
 RUN /opt/setup-scripts/activate_notebook_custom_env.py "${KERNEL}"
 ### END censusdis

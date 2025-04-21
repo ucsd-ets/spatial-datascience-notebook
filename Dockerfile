@@ -54,6 +54,11 @@ RUN mamba install -c esri arcgis arcgis-mapping -y && \
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
 
+RUN mamba install --yes 'py-xgboost' && \
+    mamba clean --all -f -y && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
+
 USER $NB_UID
 COPY arcgis_test.ipynb /opt
 RUN rm -rf /home/jovyan/requirements.txt

@@ -39,7 +39,3 @@ jupyter_bokeh
 jupyterlab-open-url-parameter
 pygris
 shap
-
-# spring 2025
-# censusdis
-# xgboost

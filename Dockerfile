@@ -29,18 +29,12 @@ RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --prefix /opt
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
-# RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --user --name="${ENVNAME}" && \
-#     fix-permissions "${CONDA_DIR}" && \
-#     fix-permissions "/home/${NB_USER}"
-
 RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/pip" install --no-cache-dir \
     censusdis \
     'numpy==1.26.4'
-
-#RUN /opt/setup-scripts/activate_notebook_custom_env.py "${ENVNAME}"
 ### END censusdis
 
-ARG SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
+# ARG SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
 # Install geospatial packages first
 RUN pip uninstall pillow fiona -y && \
     pip install -r ~/requirements.txt && \

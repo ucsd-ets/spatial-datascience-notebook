@@ -25,9 +25,13 @@ RUN mamba create --yes -p "${CONDA_DIR}/envs/${ENVNAME}" \
     jupyterlab && \
     mamba clean --all -f -y
 
-RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --user --name="${ENVNAME}" && \
+RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --name="${ENVNAME}" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
+
+# RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --user --name="${ENVNAME}" && \
+#     fix-permissions "${CONDA_DIR}" && \
+#     fix-permissions "/home/${NB_USER}"
 
 RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/pip" install --no-cache-dir \
     censusdis \

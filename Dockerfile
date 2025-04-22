@@ -31,7 +31,10 @@ RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --prefix /opt
 
 RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/pip" install --no-cache-dir \
     censusdis \
-    'numpy==1.26.4'
+    'numpy==1.26.4' \
+    folium \
+    matplotlib \
+    mapclassify    
 ### END censusdis
 
 # Install geospatial packages first

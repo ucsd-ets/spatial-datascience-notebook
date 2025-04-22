@@ -1,7 +1,6 @@
-ARG BASE_CONTAINER=ghcr.io/ucsd-ets/datascience-notebook:2024.4-stable
-FROM $BASE_CONTAINER
+FROM ghcr.io/ucsd-ets/datascience-notebook:2024.4-stable
 
-LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
+LABEL maintainer="https://github.com/ucsd-ets/spatial-datascience-notebook"
 
 USER root
 
@@ -16,6 +15,27 @@ RUN apt update -y && \
     apt install graphviz -y
 
 RUN jupyter labextension install @dafeliton/jupyterlab-notebookparams
+
+### BEGIN censusdis
+ARG ENVNAME=censusdis
+ARG PYVER=3.11
+RUN mamba create --yes -p "${CONDA_DIR}/envs/${ENVNAME}" \
+    python=${PYVER} \
+    ipykernel \
+    jupyterlab && \
+    mamba clean --all -f -y
+
+RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/python" -m ipykernel install --prefix /opt/conda --name="${ENVNAME}" && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
+
+RUN "${CONDA_DIR}/envs/${ENVNAME}/bin/pip" install --no-cache-dir \
+    censusdis \
+    'numpy==1.26.4' \
+    folium \
+    matplotlib \
+    mapclassify    
+### END censusdis
 
 # Install geospatial packages first
 RUN pip uninstall pillow fiona -y && \
@@ -36,9 +56,11 @@ RUN mamba install -c esri arcgis arcgis-mapping -y && \
 
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --upgrade nbconvert
-RUN pip install numpy==1.26.4 pygris shap
 
-# RUN pip install "numpy<2"
+RUN mamba install --yes 'py-xgboost' && \
+    mamba clean --all -f -y && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
 
 USER $NB_UID
 
